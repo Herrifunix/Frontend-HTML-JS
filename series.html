@@ -16,7 +16,8 @@
         <div class="container">
             <div class="header-left">
                 <img src="https://logos-world.net/wp-content/uploads/2020/04/Netflix-Logo.png" alt="Netflix" class="logo">
-                <nav class="main-nav">
+                <button class="mobile-menu-toggle" onclick="toggleMobileMenu()" style="display: none;">☰</button>
+                <nav class="main-nav" id="mainNav">
                     <a href="dashboard.html" class="nav-link">Accueil</a>
                     <a href="series.html" class="nav-link active">Séries</a>
                     <a href="films.html" class="nav-link">Films</a>
@@ -64,8 +65,11 @@
                     Plongez dans l'univers captivant des séries les plus populaires, des drames aux comédies, en passant par les thrillers et la science-fiction.
                 </p>
                 <div class="hero-buttons">
-                    <button class="btn-play" onclick="window.location.href='dashboard.html'">
-                        🎬 Explorer
+                    <button class="btn-play" onclick="window.location.href='player.html'">
+                        ▶ Lecture
+                    </button>
+                    <button class="btn-info">
+                        ℹ Plus d'infos
                     </button>
                 </div>
             </div>
@@ -222,6 +226,26 @@
                     heroBackground.innerHTML = `<img src="${backdropUrl}" alt="${item.title || 'Séries'}">`;
                 }
             }
+            
+            // Mettre à jour le bouton "Plus d'infos" pour la modal
+            const heroInfoBtn = document.querySelector('.btn-info');
+            if (heroInfoBtn) {
+                console.log(`🔧 [SÉRIES] Mise à jour du bouton hero pour: ${item.title} (ID: ${item.id})`);
+                
+                // Supprimer tous les anciens event listeners
+                const newInfoBtn = heroInfoBtn.cloneNode(true);
+                heroInfoBtn.parentNode.replaceChild(newInfoBtn, heroInfoBtn);
+
+                // Ajouter le nouveau event listener pour la modal
+                newInfoBtn.addEventListener('click', function() {
+                    console.log(`🎯 [SÉRIES] Ouverture modal pour: ${item.title} (ID: ${item.id})`);
+                    showContentModal(item.id, 'tv');
+                });
+                
+                console.log(`✅ [SÉRIES] Bouton hero connecté à ${item.title}`);
+            } else {
+                console.warn('⚠️ [SÉRIES] Bouton .btn-info non trouvé');
+            }
         }
         
         async function loadSeriesContent() {
@@ -271,6 +295,55 @@
                 }
             });
         }
+    </script>
+    
+    <!-- Scripts -->
+    <script src="api.js"></script>
+    <script src="script.js"></script>
+    <script src="pages-script.js"></script>
+    <script src="search.js"></script>
+    
+    <script>
+        // Test pour diagnostiquer le problème séries
+        console.log('📺 TEST SÉRIES - Page séries chargée');
+        console.log('API_KEY disponible?', typeof API_KEY !== 'undefined' ? 'OUI' : 'NON');
+        console.log('TMDB_CONFIG disponible?', typeof TMDB_CONFIG !== 'undefined' ? 'OUI' : 'NON');
+        console.log('contentManager disponible?', typeof contentManager !== 'undefined' ? 'OUI' : 'NON');
+        
+        setTimeout(() => {
+            console.log('📺 TEST - Vérification initializeSeriesPage...');
+            if (typeof initializeSeriesPage === 'function') {
+                console.log('✅ Fonction trouvée, forçage appel...');
+                initializeSeriesPage().catch(error => {
+                    console.error('❌ Erreur lors du forçage:', error);
+                });
+            } else {
+                console.error('❌ Fonction initializeSeriesPage non trouvée');
+            }
+            
+            // Test direct du bouton après 3 secondes
+            setTimeout(() => {
+                console.log('🔍 TEST BOUTON - Recherche du bouton Plus d\'infos...');
+                const heroButton = document.querySelector('.btn-info');
+                console.log('Bouton trouvé?', heroButton ? 'OUI' : 'NON');
+                
+                if (heroButton) {
+                    console.log('Bouton HTML:', heroButton.outerHTML);
+                    console.log('Bouton listeners existants?', heroButton._listeners ? 'OUI' : 'NON');
+                    
+                    // Ajouter un listener de test direct
+                    heroButton.addEventListener('click', function() {
+                        console.log('🎯 TEST - Bouton cliqué directement !');
+                        alert('Test - Bouton Plus d\'infos cliqué!');
+                    });
+                    
+                    console.log('✅ Listener de test ajouté au bouton');
+                } else {
+                    console.error('❌ Aucun bouton .btn-info trouvé');
+                }
+            }, 3000);
+            
+        }, 1000);
     </script>
 </body>
 </html>

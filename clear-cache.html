@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vider le cache - Netflix Clone</title>
+    <style>
+        body {
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            background: #000;
+            color: #fff;
+            padding: 50px;
+            text-align: center;
+        }
+        .btn {
+            background: #e50914;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            margin: 10px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 500;
+        }
+        .btn:hover {
+            background: #f40612;
+        }
+        .info {
+            background: #333;
+            padding: 20px;
+            margin: 20px auto;
+            max-width: 600px;
+            border-radius: 8px;
+        }
+    </style>
+</head>
+<body>
+    <h1>🧹 Nettoyer le cache Netflix</h1>
+    
+    <div class="info">
+        <p><strong>Problème de redirection automatique ?</strong></p>
+        <p>Si vous êtes redirigé automatiquement depuis index.html vers le dashboard, cliquez sur "Vider le cache" ci-dessous.</p>
+    </div>
+
+    <button class="btn" onclick="clearCache()">🗑️ Vider le cache localStorage</button>
+    <button class="btn" onclick="goToLogin()">🔐 Aller à la connexion</button>
+    
+    <div id="result" style="margin-top: 30px; color: #46d369;"></div>
+
+    <script>
+        function clearCache() {
+            // Vider complètement le localStorage
+            localStorage.clear();
+            
+            // Confirmer à l'utilisateur
+            document.getElementById('result').innerHTML = '✅ Cache vidé avec succès ! Vous pouvez maintenant retourner à la page de connexion.';
+            
+            console.log('Cache localStorage vidé');
+        }
+        
+        function goToLogin() {
+            // S'assurer que le cache est vidé avant de rediriger
+            localStorage.clear();
+            window.location.href = 'index.html';
+        }
+        
+        // Afficher le contenu actuel du cache
+        window.onload = function() {
+            const keys = Object.keys(localStorage);
+            if (keys.length > 0) {
+                document.getElementById('result').innerHTML = '⚠️ Des données sont présentes dans le cache: ' + keys.join(', ');
+            } else {
+                document.getElementById('result').innerHTML = '✅ Le cache est déjà vide';
+            }
+        }
+    </script>
+</body>
+</html>

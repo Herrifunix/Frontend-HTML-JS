@@ -35,6 +35,15 @@ function initializePage() {
         case 'dashboard.html':
             initializeDashboard();
             break;
+        case 'films.html':
+            initializeFilmsPage();
+            break;
+        case 'series.html':
+            initializeSeriesPage();
+            break;
+        case 'nouveautes.html':
+            initializeNouveautesPage();
+            break;
         default:
             console.log('Page non reconnue, chargement des fonctionnalités de base');
     }
@@ -349,19 +358,56 @@ async function initializeDashboard() {
 /**
  * Charger le contenu héro dynamique avec trailer
  */
-async function loadHeroContent() {
-    console.log('🎭 Chargement du héro dynamique...');
+async function loadHeroContent(type = 'all', category = 'week') {
+    console.log(`🎭 Chargement du héro dynamique pour type: ${type}, catégorie: ${category}...`);
+    
+    // Vérifier API_KEY
+    if (typeof API_KEY === 'undefined' || !API_KEY) {
+        console.error('❌ API_KEY non définie - vérification de api.js');
+        console.log('TMDB_CONFIG disponible?', typeof TMDB_CONFIG !== 'undefined');
+        if (typeof TMDB_CONFIG !== 'undefined') {
+            console.log('Utilisation de TMDB_CONFIG.API_KEY à la place');
+            window.API_KEY = TMDB_CONFIG.API_KEY;
+        } else {
+            console.error('❌ Ni API_KEY ni TMDB_CONFIG trouvés');
+            return;
+        }
+    }
     
     try {
-        // Récupérer le contenu populaire pour le héro
-        const heroContent = await contentManager.loadTrendingContent();
+        let heroContent;
+        
+        if (type === 'all') {
+            // Comportement par défaut du dashboard - contenu tendance
+            heroContent = await contentManager.loadTrendingContent();
+        } else {
+            // Charger une catégorie spécifique
+            const endpoint = type === 'tv' ? 
+                `https://api.themoviedb.org/3/tv/${category}?api_key=${API_KEY}&language=fr-FR&page=1&_t=${Date.now()}` :
+                `https://api.themoviedb.org/3/movie/${category}?api_key=${API_KEY}&language=fr-FR&page=1&_t=${Date.now()}`;
+                
+            console.log(`📡 Appel API: ${endpoint}`);
+            const response = await fetch(endpoint);
+            const data = await response.json();
+            
+            if (data.results && data.results.length > 0) {
+                heroContent = data.results.map(item => ({
+                    id: item.id,
+                    title: item.title || item.name,
+                    type: type
+                }));
+            }
+        }
         
         if (heroContent && heroContent.length > 0) {
             // Prendre le premier élément comme héro et récupérer ses détails avec trailer
             const heroItem = heroContent[0];
+            console.log(`🎬 Chargement des détails pour: ${heroItem.title} (ID: ${heroItem.id})`);
             const detailedHero = await contentManager.getContentDetails(heroItem.id, heroItem.type);
             updateHeroSection(detailedHero);
             console.log(`✅ Héro mis à jour: ${detailedHero.title}`);
+        } else {
+            console.warn('⚠️ Aucun contenu trouvé pour le héro');
         }
         
     } catch (error) {
@@ -406,11 +452,22 @@ function updateHeroSection(item) {
         }
     }
     
-    // Mettre à jour le bouton info pour ouvrir la modal du bon contenu
     if (heroInfoBtn) {
-        heroInfoBtn.onclick = function() {
+        console.log(`🔧 Mise à jour du bouton hero pour: ${item.title} (ID: ${item.id}, Type: ${item.type})`);
+        
+        // On clone le bouton pour supprimer tous les anciens event listeners
+        const newInfoBtn = heroInfoBtn.cloneNode(true);
+        heroInfoBtn.parentNode.replaceChild(newInfoBtn, heroInfoBtn);
+
+        // On ajoute le SEUL et UNIQUE event listener correct
+        newInfoBtn.addEventListener('click', function() {
+            console.log(`🎯 Ouverture modal pour: ${item.title} (ID: ${item.id}, Type: ${item.type})`);
             showContentModal(item.id, item.type || 'movie');
-        };
+        });
+        
+        console.log(`✅ Bouton hero connecté à ${item.title}`);
+    } else {
+        console.warn('⚠️ Bouton .btn-info non trouvé dans updateHeroSection');
     }
 }
 
@@ -613,9 +670,6 @@ function initializeDashboardFeatures() {
     // Menu profil
     initializeProfileMenu();
     
-    // Boutons héro
-    initializeHeroButtons();
-    
     // Modal
     initializeModal();
 }
@@ -794,28 +848,37 @@ function initializeModal() {
  * Afficher la modal avec les détails du contenu
  */
 async function showContentModal(id, type = 'movie') {
-    console.log(`📋 Ouverture modal pour ${type} ID: ${id}`);
+    console.log(`🎯 DEBUT showContentModal - ID: ${id}, Type: ${type}`);
     
     const modal = document.getElementById('modalOverlay');
     const modalBody = document.querySelector('.modal-body');
     
-    if (!modal || !modalBody) return;
+    console.log('Modal trouvée?', modal ? 'OUI' : 'NON');
+    console.log('Modal body trouvé?', modalBody ? 'OUI' : 'NON');
     
+    if (!modal || !modalBody) {
+        console.error('❌ Modal ou modal-body non trouvé');
+        return;
+    }
+
     try {
+        console.log('📡 Affichage modal avec chargement...');
         // Afficher la modal avec un indicateur de chargement
         modalBody.innerHTML = '<div class="modal-loading">Chargement des détails...</div>';
         modal.classList.add('active');
         document.body.style.overflow = 'hidden';
         
+        console.log(`📡 Appel API pour ID: ${id}, Type: ${type}`);
         // Récupérer les détails via l'API
         const details = await contentManager.getContentDetails(id, type);
         
         if (!details) {
+            console.error('❌ Aucun détail récupéré');
             modalBody.innerHTML = '<div class="modal-error">Erreur lors du chargement des détails.</div>';
             return;
         }
         
-        // Afficher le contenu
+        console.log(`✅ Détails récupérés: ${details.title}`);        // Afficher le contenu
         modalBody.innerHTML = createModalContent(details);
         
         // Ajouter les event listeners pour les boutons de la modal
@@ -1061,6 +1124,179 @@ if (typeof module !== 'undefined' && module.exports) {
     };
 }
 
+// Fonction pour initialiser la page films
+async function initializeFilmsPage() {
+    console.log('🎬 Initialisation de la page films avec API TMDb');
+    
+    try {
+        // Vérifier que l'API est chargée
+        if (typeof contentManager === 'undefined') {
+            console.error('❌ API TMDb non chargée');
+            return;
+        }
+        
+        // Afficher un indicateur de chargement
+        showLoadingIndicator();
+        
+        // Charger le contenu héro
+        await loadHeroContent('movie', 'popular');
+        
+        // Charger le contenu depuis l'API
+        await loadDashboardContent();
+        
+        // Initialiser les fonctionnalités interactives
+        initializeDashboardFeatures();
+        
+        // Masquer l'indicateur de chargement
+        hideLoadingIndicator();
+        
+        console.log('✅ Page films initialisée avec succès');
+        
+    } catch (error) {
+        console.error('❌ Erreur lors de l\'initialisation des films:', error);
+        hideLoadingIndicator();
+        showErrorMessage('Erreur lors du chargement de la page films.');
+    }
+}
+
+// Fonction pour initialiser la page séries
+async function initializeSeriesPage() {
+    console.log('📺 Initialisation de la page séries avec API TMDb');
+    
+    try {
+        // Vérifier que l'API est chargée
+        if (typeof contentManager === 'undefined') {
+            console.error('❌ API TMDb non chargée pour séries');
+            console.log('Vérification API_KEY:', typeof API_KEY !== 'undefined' ? 'TROUVÉE' : 'MANQUANTE');
+            console.log('Vérification TMDB_CONFIG:', typeof TMDB_CONFIG !== 'undefined' ? 'TROUVÉE' : 'MANQUANTE');
+            return;
+        }
+        
+        console.log('✅ API TMDb trouvée pour séries, contentManager disponible');
+        
+        // Afficher un indicateur de chargement
+        console.log('📺 Appel showLoadingIndicator pour séries...');
+        showLoadingIndicator();
+        
+        // Charger le contenu héro
+        console.log('📺 Appel loadHeroContent pour séries...');
+        await loadHeroContent('tv', 'popular');
+        
+        // Charger le contenu depuis l'API
+        console.log('📺 Appel loadDashboardContent pour séries...');
+        await loadDashboardContent();
+        
+        // Initialiser les fonctionnalités interactives
+        console.log('📺 Appel initializeDashboardFeatures pour séries...');
+        initializeDashboardFeatures();
+        
+        // Masquer l'indicateur de chargement
+        console.log('📺 Appel hideLoadingIndicator pour séries...');
+        hideLoadingIndicator();
+        
+        console.log('✅ Page séries initialisée avec succès');
+        
+    } catch (error) {
+        console.error('❌ Erreur lors de l\'initialisation des séries:', error);
+        hideLoadingIndicator();
+        showErrorMessage('Erreur lors du chargement de la page séries.');
+    }
+}
+
+// Fonction pour initialiser la page nouveautés
+async function initializeNouveautesPage() {
+    console.log('🆕 Initialisation de la page nouveautés avec API TMDb');
+    
+    try {
+        // Vérifier que l'API est chargée
+        if (typeof contentManager === 'undefined') {
+            console.error('❌ API TMDb non chargée');
+            return;
+        }
+        
+        // Afficher un indicateur de chargement
+        showLoadingIndicator();
+        
+        // Charger le contenu héro
+        await loadHeroContent('movie', 'now_playing');
+        
+        // Charger le contenu depuis l'API
+        await loadDashboardContent();
+        
+        // Initialiser les fonctionnalités interactives
+        initializeDashboardFeatures();
+        
+        // Masquer l'indicateur de chargement
+        hideLoadingIndicator();
+        
+        console.log('✅ Page nouveautés initialisée avec succès');
+        
+    } catch (error) {
+        console.error('❌ Erreur lors de l\'initialisation des nouveautés:', error);
+        hideLoadingIndicator();
+        showErrorMessage('Erreur lors du chargement de la page nouveautés.');
+    }
+}
+
+// Fonction pour gérer le menu mobile hamburger
+function toggleMobileMenu() {
+    const nav = document.getElementById('mainNav');
+    const menuToggle = document.querySelector('.mobile-menu-toggle');
+    
+    if (nav && menuToggle) {
+        nav.classList.toggle('active');
+        
+        // Changer l'icône du bouton hamburger
+        if (nav.classList.contains('active')) {
+            menuToggle.innerHTML = '✕';
+        } else {
+            menuToggle.innerHTML = '☰';
+        }
+    }
+}
+
+// Fermer le menu mobile quand on clique en dehors
+document.addEventListener('click', function(event) {
+    const nav = document.getElementById('mainNav');
+    const menuToggle = document.querySelector('.mobile-menu-toggle');
+    
+    if (nav && menuToggle && nav.classList.contains('active')) {
+        if (!nav.contains(event.target) && !menuToggle.contains(event.target)) {
+            nav.classList.remove('active');
+            menuToggle.innerHTML = '☰';
+        }
+    }
+});
+
+// Adapter la navigation selon la taille d'écran
+function handleResponsiveNavigation() {
+    const menuToggle = document.querySelector('.mobile-menu-toggle');
+    const nav = document.getElementById('mainNav');
+    
+    if (window.innerWidth <= 768) {
+        // Mode mobile
+        if (menuToggle) {
+            menuToggle.style.display = 'block';
+        }
+    } else {
+        // Mode desktop
+        if (menuToggle) {
+            menuToggle.style.display = 'none';
+        }
+        if (nav) {
+            nav.classList.remove('active');
+        }
+    }
+}
+
+// Écouter les changements de taille d'écran
+window.addEventListener('resize', handleResponsiveNavigation);
+
+// Appeler une fois au chargement
+document.addEventListener('DOMContentLoaded', function() {
+    handleResponsiveNavigation();
+});
+
 // Rendre disponible globalement
 window.NetflixApp = {
     initializePage,
@@ -1069,5 +1305,6 @@ window.NetflixApp = {
     showContentModal,
     getMyListData,
     removeFromMyList,
-    saveToMyList
+    saveToMyList,
+    toggleMobileMenu
 };

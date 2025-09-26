@@ -16,7 +16,8 @@
         <div class="container">
             <div class="header-left">
                 <img src="https://logos-world.net/wp-content/uploads/2020/04/Netflix-Logo.png" alt="Netflix" class="logo">
-                <nav class="main-nav">
+                <button class="mobile-menu-toggle" onclick="toggleMobileMenu()" style="display: none;">☰</button>
+                <nav class="main-nav" id="mainNav">
                     <a href="dashboard.html" class="nav-link active">Accueil</a>
                     <a href="series.html" class="nav-link">Séries</a>
                     <a href="films.html" class="nav-link">Films</a>
@@ -59,12 +60,10 @@
         </div>
         <div class="hero-content">
             <div class="hero-info">
-                <h1 class="hero-title">Stranger Things</h1>
-                <p class="hero-description">
-                    Quand un jeune garçon disparaît, sa mère, un chef de police et ses amis doivent affronter des forces terrifiantes pour le retrouver.
-                </p>
+                <h1 class="hero-title">Chargement...</h1>
+                <p class="hero-description">Veuillez patienter pendant que nous préparons votre contenu.</p>
                 <div class="hero-buttons">
-                    <button class="btn-play">
+                    <button class="btn-play" onclick="window.location.href='player.html'">
                         ▶ Lecture
                     </button>
                     <button class="btn-info">

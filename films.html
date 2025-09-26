@@ -16,7 +16,8 @@
         <div class="container">
             <div class="header-left">
                 <img src="https://logos-world.net/wp-content/uploads/2020/04/Netflix-Logo.png" alt="Netflix" class="logo">
-                <nav class="main-nav">
+                <button class="mobile-menu-toggle" onclick="toggleMobileMenu()" style="display: none;">☰</button>
+                <nav class="main-nav" id="mainNav">
                     <a href="dashboard.html" class="nav-link">Accueil</a>
                     <a href="series.html" class="nav-link">Séries</a>
                     <a href="films.html" class="nav-link active">Films</a>
@@ -64,8 +65,11 @@
                     Explorez une vaste collection de films, des blockbusters aux films indépendants, des comédies aux thrillers, pour tous les goûts et tous les âges.
                 </p>
                 <div class="hero-buttons">
-                    <button class="btn-play" onclick="window.location.href='dashboard.html'">
-                        🎬 Explorer
+                    <button class="btn-play" onclick="window.location.href='player.html'">
+                        ▶ Lecture
+                    </button>
+                    <button class="btn-info">
+                        ℹ Plus d'infos
                     </button>
                 </div>
             </div>
@@ -285,5 +289,11 @@
             });
         }
     </script>
+    
+    <!-- Scripts -->
+    <script src="api.js"></script>
+    <script src="script.js"></script>
+    <script src="pages-script.js"></script>
+    <script src="search.js"></script>
 </body>
 </html>

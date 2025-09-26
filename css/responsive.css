@@ -27,19 +27,102 @@
     }
     
     .header-left {
-        gap: 20px;
+        gap: 15px;
+        flex: 1;
     }
     
+    /* Navigation mobile améliorée */
     .main-nav {
-        display: none;
+        position: fixed;
+        top: 70px;
+        left: -100%;
+        width: 250px;
+        height: calc(100vh - 70px);
+        background: rgba(0, 0, 0, 0.95);
+        backdrop-filter: blur(10px);
+        flex-direction: column;
+        padding: 20px;
+        transition: left 0.3s ease;
+        z-index: 999;
+        border-right: 1px solid #333;
+    }
+    
+    .main-nav.active {
+        left: 0;
+    }
+    
+    .nav-link {
+        padding: 15px 0;
+        border-bottom: 1px solid #333;
+        font-size: 16px;
+        display: block;
+        width: 100%;
+    }
+    
+    .nav-link:last-child {
+        border-bottom: none;
+    }
+    
+    /* Bouton hamburger */
+    .mobile-menu-toggle {
+        display: block !important;
+        background: none;
+        border: none;
+        color: #fff;
+        font-size: 24px;
+        cursor: pointer;
+        padding: 5px;
+    }
+    
+    /* Amélioration des carousels et catégories */
+    .content-row {
+        margin-bottom: 25px;
+    }
+    
+    .content-row h2 {
+        font-size: 18px;
+        margin-bottom: 15px;
+        padding: 0 15px;
+    }
+    
+    .content-scroll {
+        padding: 0 10px;
     }
     
     .content-item {
-        width: 150px;
+        width: 120px;
+        margin-right: 8px;
     }
     
     .content-item img {
-        height: 225px;
+        height: 180px;
+        border-radius: 4px;
+    }
+    
+    .content-item:hover {
+        transform: scale(1.02);
+    }
+    
+    /* Boutons de navigation carousel améliorés */
+    .scroll-btn {
+        width: 40px;
+        height: 40px;
+        font-size: 18px;
+        background: rgba(0, 0, 0, 0.8);
+        border: 1px solid #444;
+    }
+    
+    .scroll-btn:hover {
+        background: rgba(0, 0, 0, 0.9);
+        transform: scale(1.1);
+    }
+    
+    .scroll-btn.prev {
+        left: 5px;
+    }
+    
+    .scroll-btn.next {
+        right: 5px;
     }
     
     .modal-content {
@@ -47,6 +130,36 @@
         max-width: 1400px !important;
         max-height: 95vh;
         margin: 5px;
+    }
+    
+    /* Page profil responsive */
+    .profile-content h1 {
+        font-size: 24px;
+        margin-bottom: 30px;
+    }
+    
+    .profiles-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+        max-width: 320px;
+    }
+    
+    .profile-avatar-large {
+        width: 100px;
+        height: 100px;
+    }
+    
+    .profile-item h3 {
+        font-size: 14px;
+    }
+    
+    .profile-actions {
+        margin-top: 30px;
+    }
+    
+    .btn-secondary {
+        padding: 12px 24px;
+        font-size: 14px;
     }
     
     .modal-hero-content {
@@ -85,17 +198,71 @@
 
 @media (max-width: 480px) {
     .search-input.active {
-        width: 180px;
+        width: 160px;
     }
     
     .hero-buttons {
         flex-direction: column;
-        gap: 10px;
+        gap: 8px;
+        align-items: center;
     }
     
     .btn-play,
     .btn-info {
         justify-content: center;
+        padding: 10px 20px;
+        font-size: 14px;
+        min-width: 140px;
+    }
+    
+    /* Navigation encore plus compacte sur très petits écrans */
+    .main-nav {
+        width: 200px;
+    }
+    
+    .dashboard-header .logo {
+        height: 28px;
+    }
+    
+    /* Carousels ultra-compacts */
+    .content-row h2 {
+        font-size: 16px;
+        margin-bottom: 12px;
+    }
+    
+    .content-item {
+        width: 100px;
+        margin-right: 6px;
+    }
+    
+    .content-item img {
+        height: 150px;
+    }
+    
+    .scroll-btn {
+        width: 35px;
+        height: 35px;
+        font-size: 16px;
+    }
+    
+    /* Hero section plus compact */
+    .hero-content {
+        padding: 0 20px;
+    }
+    
+    .hero-title {
+        font-size: 24px;
+        margin-bottom: 12px;
+    }
+    
+    .hero-description {
+        font-size: 14px;
+        margin-bottom: 20px;
+        display: -webkit-box;
+        -webkit-line-clamp: 3;
+        -webkit-box-orient: vertical;
+        line-clamp: 3;
+        overflow: hidden;
     }
 
     .modal-content {
@@ -116,6 +283,54 @@
     .modal-submit-btn {
         padding: 14px;
         font-size: 16px;
+    }
+}
+
+/* Très petits écrans - ajustements pour profils */
+@media (max-width: 480px) {
+    .profile-page {
+        padding: 60px 15px 20px;
+    }
+    
+    .profile-content h1 {
+        font-size: 20px;
+    }
+    
+    .profiles-grid {
+        gap: 15px;
+        max-width: 280px;
+    }
+    
+    .profile-avatar-large {
+        width: 80px;
+        height: 80px;
+    }
+    
+    .profile-item h3 {
+        font-size: 12px;
+        margin-top: 8px;
+    }
+    
+    .add-avatar svg {
+        width: 32px;
+        height: 32px;
+    }
+    
+    /* Corrections pour les modals de profil sur mobile */
+    .avatar-selection {
+        flex-direction: column;
+        text-align: center;
+        gap: 15px;
+    }
+    
+    .current-avatar {
+        width: 60px;
+        height: 60px;
+    }
+    
+    .btn-change-avatar {
+        width: 100%;
+        text-align: center;
     }
 }
 

@@ -11,6 +11,9 @@ const TMDB_CONFIG = {
     BEARER_TOKEN: 'eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJlNGI5MDMyNzIyN2M4OGRhYWMxNGMwYmQwYzFmOTNjZCIsIm5iZiI6MTc1ODY0ODMyMS43NDg5OTk4LCJzdWIiOiI2OGQyZDgwMTJhNWU3YzBhNDVjZWNmZWUiLCJzY29wZXMiOlsiYXBpX3JlYWQiXSwidmVyc2lvbiI6MX0.aylEitwtAH0w4XRk8izJNNkF_bet8sxiC9iI-zSdHbU'
 };
 
+// Exporter API_KEY pour compatibilité avec script.js
+const API_KEY = TMDB_CONFIG.API_KEY;
+
 // Tailles d'images disponibles
 const IMAGE_SIZES = {
     poster: {
