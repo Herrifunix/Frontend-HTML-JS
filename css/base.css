@@ -1,0 +1,74 @@
+/* Base styles - Styles communs à toutes les pages */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    background-color: #000;
+    color: #fff;
+    line-height: 1.6;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Common button styles */
+.btn-primary {
+    background-color: #e50914;
+    color: white;
+    border: none;
+    padding: 16px 24px;
+    font-size: 16px;
+    font-weight: 500;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    width: 100%;
+}
+
+.btn-primary:hover {
+    background-color: #f40612;
+}
+
+.guest-access {
+    margin: 20px 0;
+    text-align: center;
+}
+
+.btn-guest {
+    background: linear-gradient(135deg, #333, #555);
+    color: white;
+    border: 2px solid #666;
+    padding: 12px 24px;
+    font-size: 16px;
+    font-weight: 500;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    width: 100%;
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.btn-guest:hover {
+    background: linear-gradient(135deg, #555, #777);
+    border-color: #888;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+}
+
+.guest-note {
+    color: #999;
+    font-size: 12px;
+    margin: 0;
+    font-style: italic;
+}

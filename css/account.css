@@ -1,0 +1,348 @@
+/* Styles spécifiques à la page de compte (account.html) */
+
+.account-page {
+    background: #f3f3f3;
+    color: #333;
+    padding-top: 80px;
+    min-height: 100vh;
+}
+
+.account-main {
+    padding: 40px 0;
+}
+
+.account-section {
+    margin-bottom: 40px;
+}
+
+.account-section h2 {
+    font-size: 20px;
+    font-weight: 500;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.account-card {
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 20px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 30px;
+}
+
+.info-group {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.account-links {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-top: 10px;
+}
+
+.link {
+    color: #0073e6;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.link:hover {
+    text-decoration: underline;
+}
+
+.plan-details {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.plan-name {
+    font-weight: 600;
+    font-size: 16px;
+}
+
+.plan-badge {
+    background: #46d369;
+    color: white;
+    padding: 2px 6px;
+    border-radius: 3px;
+    font-size: 11px;
+    font-weight: 600;
+}
+
+.plan-price {
+    color: #333;
+    font-size: 16px;
+}
+
+.payment-method {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 5px;
+}
+
+.next-billing {
+    color: #666;
+    font-size: 14px;
+    margin-bottom: 10px;
+}
+
+.plan-comparison {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+.plan-card {
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 20px;
+    position: relative;
+}
+
+.plan-card.current {
+    border-color: #0073e6;
+}
+
+.current-badge {
+    position: absolute;
+    top: -10px;
+    left: 20px;
+    background: #0073e6;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 3px;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.plan-card h3 {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.plan-card .plan-price {
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 15px;
+}
+
+.plan-features {
+    list-style: none;
+    margin-bottom: 20px;
+}
+
+.plan-features li {
+    padding: 5px 0;
+    color: #666;
+}
+
+.btn-upgrade {
+    background: #0073e6;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+.profiles-list {
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.profile-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.profile-row:last-child {
+    border-bottom: none;
+}
+
+.profile-info {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.profile-pic {
+    width: 48px;
+    height: 48px;
+    border-radius: 4px;
+}
+
+.profile-details h4 {
+    font-size: 16px;
+    margin-bottom: 5px;
+}
+
+.profile-settings {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    font-size: 14px;
+    color: #666;
+}
+
+.settings-list {
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.setting-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.setting-row:last-child {
+    border-bottom: none;
+}
+
+.setting-info h4 {
+    font-size: 16px;
+    margin-bottom: 5px;
+}
+
+.setting-info p {
+    color: #666;
+    font-size: 14px;
+}
+
+.toggle-switch {
+    position: relative;
+    display: inline-block;
+    width: 50px;
+    height: 24px;
+}
+
+.toggle-switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.toggle-slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: .4s;
+    border-radius: 24px;
+}
+
+.toggle-slider:before {
+    position: absolute;
+    content: "";
+    height: 18px;
+    width: 18px;
+    left: 3px;
+    bottom: 3px;
+    background-color: white;
+    transition: .4s;
+    border-radius: 50%;
+}
+
+input:checked + .toggle-slider {
+    background-color: #0073e6;
+}
+
+input:checked + .toggle-slider:before {
+    transform: translateX(26px);
+}
+
+.setting-select {
+    background: #fff;
+    border: 1px solid #ddd;
+    padding: 8px 12px;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+.activity-links {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.danger-section {
+    border-top: 1px solid #ddd;
+    padding-top: 40px;
+}
+
+.cancel-membership {
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 30px;
+    text-align: center;
+}
+
+.cancel-membership h3 {
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+.cancel-membership p {
+    color: #666;
+    margin-bottom: 20px;
+}
+
+.btn-danger {
+    background: #e50914;
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+.account-footer {
+    background: #f3f3f3;
+    border-top: 1px solid #ddd;
+    padding: 40px 0;
+    margin-top: 40px;
+}
+
+.footer-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    margin-bottom: 20px;
+}
+
+.footer-links a {
+    color: #666;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.footer-links a:hover {
+    text-decoration: underline;
+}
+
+.footer-info {
+    color: #999;
+    font-size: 14px;
+}

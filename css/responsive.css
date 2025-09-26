@@ -1,0 +1,149 @@
+/* Styles responsive communs à toutes les pages */
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .container {
+        padding: 0 15px;
+    }
+    
+    .login-form-wrapper {
+        padding: 40px 30px;
+    }
+    
+    .hero-content {
+        padding: 0 30px;
+    }
+    
+    .hero-title {
+        font-size: 32px;
+    }
+    
+    .hero-description {
+        font-size: 16px;
+    }
+    
+    .plans-container {
+        grid-template-columns: 1fr;
+    }
+    
+    .header-left {
+        gap: 20px;
+    }
+    
+    .main-nav {
+        display: none;
+    }
+    
+    .content-item {
+        width: 150px;
+    }
+    
+    .content-item img {
+        height: 225px;
+    }
+    
+    .modal-content {
+        width: 98% !important;
+        max-width: 1400px !important;
+        max-height: 95vh;
+        margin: 5px;
+    }
+    
+    .modal-hero-content {
+        left: 24px;
+        right: 24px;
+        bottom: 40px;
+    }
+    
+    .modal-title {
+        font-size: 24px;
+        text-align: left;
+    }
+    
+    .modal-info {
+        padding: 0 24px 24px;
+    }
+    
+    .modal-details {
+        grid-template-columns: 1fr;
+    }
+
+    .loading-placeholder {
+        min-height: 150px;
+        font-size: 16px;
+    }
+    
+    .error-content {
+        padding: 30px 20px;
+    }
+    
+    .modal-loading {
+        min-height: 150px;
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 480px) {
+    .search-input.active {
+        width: 180px;
+    }
+    
+    .hero-buttons {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .btn-play,
+    .btn-info {
+        justify-content: center;
+    }
+
+    .modal-content {
+        padding: 30px 20px;
+        margin: 20px;
+    }
+    
+    .modal-title {
+        font-size: 24px;
+        margin-bottom: 25px;
+    }
+    
+    .modal-form-group input {
+        padding: 12px;
+        font-size: 16px;
+    }
+    
+    .modal-submit-btn {
+        padding: 14px;
+        font-size: 16px;
+    }
+}
+
+/* Responsive pour le modal */
+@media (max-width: 768px) {
+    .modal-content {
+        width: 98% !important;
+        max-width: 1400px !important;
+        max-height: 95vh;
+        margin: 5px;
+    }
+    
+    .modal-hero-content {
+        left: 24px;
+        right: 24px;
+        bottom: 40px;
+    }
+    
+    .modal-title {
+        font-size: 24px;
+        text-align: left;
+    }
+    
+    .modal-info {
+        padding: 0 24px 24px;
+    }
+    
+    .modal-details {
+        grid-template-columns: 1fr;
+    }
+}

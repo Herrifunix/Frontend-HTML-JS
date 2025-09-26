@@ -1,0 +1,188 @@
+/* Styles spécifiques à la page de connexion (index.html) */
+
+.login-page {
+    height: 100vh;
+    overflow: hidden;
+}
+
+.login-background {
+    position: relative;
+    height: 100vh;
+    background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)),
+                url('https://assets.nflxext.com/ffe/siteui/vlv3/8728e059-7686-4d2d-a67a-84872bd71025/e90516bd-6925-4341-a6cf-0b9f3d0c140a/US-en-20240708-POP_SIGNUP_TWO_WEEKS-perspective_WEB_34324b52-d094-482b-8c2a-708dc64c9065_small.jpg');
+    background-size: cover;
+    background-position: center;
+}
+
+.background-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.4);
+}
+
+.login-header {
+    position: relative;
+    z-index: 10;
+    padding: 20px 0;
+}
+
+.logo {
+    height: 45px;
+    width: auto;
+}
+
+.login-main {
+    position: relative;
+    z-index: 10;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: calc(100vh - 140px);
+}
+
+.login-container {
+    width: 100%;
+    max-width: 450px;
+    padding: 20px;
+}
+
+.login-form-wrapper {
+    background: rgba(0, 0, 0, 0.75);
+    padding: 60px 68px 40px;
+    border-radius: 4px;
+}
+
+.login-form-wrapper h1 {
+    color: #fff;
+    font-size: 32px;
+    font-weight: 700;
+    margin-bottom: 28px;
+}
+
+.form-group {
+    position: relative;
+    margin-bottom: 16px;
+}
+
+.form-input {
+    width: 100%;
+    height: 50px;
+    background: #333;
+    border: none;
+    border-radius: 4px;
+    color: #fff;
+    font-size: 16px;
+    padding: 16px 20px 0;
+    outline: none;
+}
+
+.form-input:focus {
+    background: #454545;
+}
+
+.form-label {
+    position: absolute;
+    left: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #8c8c8c;
+    font-size: 14px;
+    pointer-events: none;
+    transition: all 0.3s ease;
+}
+
+.form-input:focus + .form-label,
+.form-input:not(:placeholder-shown) + .form-label {
+    top: 4px;
+    font-size: 11px;
+    color: #8c8c8c;
+    transform: translateY(0);
+}
+
+.error-message {
+    color: #e87c03;
+    font-size: 13px;
+    margin-top: 6px;
+    display: none;
+}
+
+.form-options {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 16px 0;
+}
+
+.checkbox-container {
+    display: flex;
+    align-items: center;
+    color: #b3b3b3;
+    font-size: 13px;
+    cursor: pointer;
+}
+
+.checkbox-container input {
+    margin-right: 8px;
+}
+
+.forgot-password {
+    color: #b3b3b3;
+    font-size: 13px;
+    text-decoration: none;
+}
+
+.forgot-password:hover {
+    text-decoration: underline;
+}
+
+.signup-section {
+    margin-top: 16px;
+    color: #737373;
+}
+
+.signup-section a {
+    color: #fff;
+    text-decoration: none;
+}
+
+.signup-section a:hover {
+    text-decoration: underline;
+}
+
+.guest-access {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.btn-guest {
+    background: transparent;
+    color: #fff;
+    border: 1px solid #333;
+    padding: 12px 24px;
+    font-size: 14px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-bottom: 8px;
+    width: 100%;
+}
+
+.btn-guest:hover {
+    background: #333;
+    border-color: #555;
+}
+
+.guest-info {
+    font-size: 12px;
+    color: #737373;
+    margin: 0;
+}
+
+.recaptcha-info {
+    font-size: 13px;
+    color: #8c8c8c;
+    margin-top: 16px;
+}
