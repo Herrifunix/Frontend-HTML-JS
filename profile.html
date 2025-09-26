@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Netflix - Gérer les profils</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Helvetica+Neue:wght@300;400;500;700&display=swap" rel="stylesheet">
+</head>
+<body class="profile-page">
+    <!-- Header -->
+    <header class="dashboard-header">
+        <div class="container">
+            <div class="header-left">
+                <img src="https://logos-world.net/wp-content/uploads/2020/04/Netflix-Logo.png" alt="Netflix" class="logo">
+                <nav class="main-nav">
+                    <a href="dashboard.html" class="nav-link">Accueil</a>
+                    <a href="#" class="nav-link">Séries</a>
+                    <a href="#" class="nav-link">Films</a>
+                    <a href="#" class="nav-link">Nouveautés</a>
+                    
+                </nav>
+            </div>
+            
+            <div class="header-right">
+                <div class="profile-menu">
+                    <img src="https://i.pinimg.com/564x/5b/50/e7/5b50e75d07c726d36f397f6359098f58.jpg" alt="Profil" class="profile-avatar">
+                    <div class="dropdown-menu">
+                        <a href="profile.html" class="dropdown-item">Gérer les profils</a>
+                        <a href="account.html" class="dropdown-item">Compte</a>
+                        <a href="#" class="dropdown-item">Centre d'aide</a>
+                        <hr>
+                        <a href="index.html" class="dropdown-item">Se déconnecter</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main content -->
+    <main class="profile-main">
+        <div class="container">
+            <div class="profile-content">
+                <h1>Qui regarde Netflix ?</h1>
+                
+                <div class="profiles-grid">
+                    <!-- Main Profile -->
+                    <div class="profile-item active" data-profile="main">
+                        <div class="profile-avatar-large">
+                            <img src="https://i.pinimg.com/564x/5b/50/e7/5b50e75d07c726d36f397f6359098f58.jpg" alt="Profil principal">
+                            <div class="profile-edit-overlay">
+                                <svg viewBox="0 0 24 24" width="24" height="24">
+                                    <path fill="currentColor" d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/>
+                                </svg>
+                            </div>
+                        </div>
+                        <h3>Principal</h3>
+                    </div>
+                    
+                    <!-- Kids Profile -->
+                    <div class="profile-item" data-profile="kids">
+                        <div class="profile-avatar-large">
+                            <img src="https://i.pinimg.com/564x/1c/c5/35/1cc535901e32f18db87fa195a942c6d0.jpg" alt="Profil enfants">
+                            <div class="profile-edit-overlay">
+                                <svg viewBox="0 0 24 24" width="24" height="24">
+                                    <path fill="currentColor" d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/>
+                                </svg>
+                            </div>
+                        </div>
+                        <h3>Enfants</h3>
+                    </div>
+                    
+                    <!-- Guest Profile -->
+                    <div class="profile-item" data-profile="guest">
+                        <div class="profile-avatar-large">
+                            <img src="https://i.pinimg.com/564x/aa/92/84/aa928477ca2ea6b7dd6e70bb67baec0b.jpg" alt="Profil invité">
+                            <div class="profile-edit-overlay">
+                                <svg viewBox="0 0 24 24" width="24" height="24">
+                                    <path fill="currentColor" d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/>
+                                </svg>
+                            </div>
+                        </div>
+                        <h3>Invité</h3>
+                    </div>
+                    
+                    <!-- Add Profile -->
+                    <div class="profile-item add-profile" id="addProfile">
+                        <div class="profile-avatar-large add-avatar">
+                            <svg viewBox="0 0 24 24" width="48" height="48">
+                                <path fill="currentColor" d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/>
+                            </svg>
+                        </div>
+                        <h3>Ajouter un profil</h3>
+                    </div>
+                </div>
+                
+                <div class="profile-actions">
+                    <button class="btn-secondary" id="manageProfiles">Gérer les profils</button>
+                    <button class="btn-primary" id="continueBtn">Continuer</button>
+                </div>
+                
+                <div class="profile-note">
+                    <p>Vous pouvez créer jusqu'à 5 profils sur votre compte Netflix.</p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Add Profile Modal -->
+    <div class="modal-overlay" id="addProfileModal">
+        <div class="modal-content profile-modal">
+            <button class="modal-close" id="modalClose">&times;</button>
+            <div class="modal-body">
+                <h2>Ajouter un profil</h2>
+                <div class="profile-form">
+                    <div class="avatar-selection">
+                        <div class="current-avatar">
+                            <img src="https://i.pinimg.com/564x/99/23/41/9923414d76d50fbb6fda21b63a0e9dc9.jpg" alt="Avatar" id="selectedAvatar">
+                        </div>
+                        <button class="btn-change-avatar" id="changeAvatarBtn">Changer d'avatar</button>
+                    </div>
+                    
+                    <div class="form-group">
+                        <input type="text" id="profileName" class="form-input" placeholder="Nom" maxlength="15">
+                        <div class="character-count">0/15</div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="checkbox-container">
+                            <input type="checkbox" id="kidsProfile">
+                            <span class="checkmark"></span>
+                            Enfant ? Si coché, ce profil n'aura accès qu'aux films et séries adaptés aux enfants.
+                        </label>
+                    </div>
+                    
+                    <div class="modal-actions">
+                        <button class="btn-secondary" id="cancelBtn">Annuler</button>
+                        <button class="btn-primary" id="saveProfileBtn">Continuer</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

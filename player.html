@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Netflix - Lecteur vidéo</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Helvetica+Neue:wght@300;400;500;700&display=swap" rel="stylesheet">
+</head>
+<body class="player-page">
+    <!-- Video Player -->
+    <div class="video-player-container">
+        <div class="video-player" id="videoPlayer">
+            <!-- Video placeholder -->
+            <div class="video-placeholder">
+                <div class="video-backdrop">
+                    <img src="https://wallpapercave.com/wp/wp4056410.jpg" alt="Video">
+                </div>
+                <div class="play-overlay">
+                    <button class="big-play-btn" id="bigPlayBtn">
+                        <svg viewBox="0 0 24 24" width="80" height="80">
+                            <path fill="currentColor" d="M8,5.14V19.14L19,12.14L8,5.14Z"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Video Controls -->
+            <div class="video-controls" id="videoControls">
+                <div class="progress-bar">
+                    <div class="progress-track">
+                        <div class="progress-filled" style="width: 35%"></div>
+                        <div class="progress-thumb" style="left: 35%"></div>
+                    </div>
+                    <div class="time-info">
+                        <span class="current-time">12:34</span>
+                        <span class="total-time">36:45</span>
+                    </div>
+                </div>
+
+                <div class="controls-bar">
+                    <div class="controls-left">
+                        <button class="control-btn play-pause" id="playPauseBtn">
+                            <svg viewBox="0 0 24 24" width="24" height="24">
+                                <path fill="currentColor" d="M8,5.14V19.14L19,12.14L8,5.14Z"/>
+                            </svg>
+                        </button>
+                        
+                        <button class="control-btn" id="skipBackBtn">
+                            <svg viewBox="0 0 24 24" width="24" height="24">
+                                <path fill="currentColor" d="M11,18V6L8.5,8.5L11,18M13,6V18L20,12L13,6Z"/>
+                            </svg>
+                            <span class="skip-text">10</span>
+                        </button>
+                        
+                        <button class="control-btn" id="skipForwardBtn">
+                            <span class="skip-text">10</span>
+                            <svg viewBox="0 0 24 24" width="24" height="24">
+                                <path fill="currentColor" d="M13,6V18L20,12L13,6M11,18V6L4,12L11,18Z"/>
+                            </svg>
+                        </button>
+
+                        <div class="volume-control">
+                            <button class="control-btn volume-btn" id="volumeBtn">
+                                <svg viewBox="0 0 24 24" width="24" height="24">
+                                    <path fill="currentColor" d="M14,3.23V5.29C16.89,6.15 19,8.83 19,12C19,15.17 16.89,17.85 14,18.71V20.77C18.01,19.86 21,16.28 21,12C21,7.72 18.01,4.14 14,3.23M16.5,12C16.5,10.23 15.5,8.71 14,7.97V16C15.5,15.29 16.5,13.76 16.5,12M3,9V15H7L12,20V4L7,9H3Z"/>
+                                </svg>
+                            </button>
+                            <div class="volume-slider">
+                                <div class="volume-track">
+                                    <div class="volume-filled" style="width: 70%"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="episode-info">
+                            <span class="episode-title">Chapitre 1: Disparition de Will Byers</span>
+                        </div>
+                    </div>
+
+                    <div class="controls-right">
+                        <button class="control-btn" id="subtitlesBtn">
+                            <svg viewBox="0 0 24 24" width="24" height="24">
+                                <path fill="currentColor" d="M20,4H4C2.89,4 2,4.89 2,6V18C2,19.11 2.89,20 4,20H20C21.11,20 22,19.11 22,18V6C22,4.89 21.11,4 20,4M20,18H4V6H20V18M6,10H8V12H6V10M6,14H14V16H6V14M16,14H18V16H16V14M10,10H18V12H10V10Z"/>
+                            </svg>
+                        </button>
+
+                        <button class="control-btn" id="audioBtn">
+                            <svg viewBox="0 0 24 24" width="24" height="24">
+                                <path fill="currentColor" d="M12,3C13.05,3 14.05,3.35 14.88,4.08C15.71,4.8 16.28,5.8 16.44,6.91C16.5,7.26 16.5,7.61 16.44,7.96C16.28,9.07 15.71,10.07 14.88,10.8C14.05,11.52 13.05,11.88 12,11.88C10.95,11.88 9.95,11.52 9.12,10.8C8.29,10.07 7.72,9.07 7.56,7.96C7.5,7.61 7.5,7.26 7.56,6.91C7.72,5.8 8.29,4.8 9.12,4.08C9.95,3.35 10.95,3 12,3M12,21C17.55,21 22,16.55 22,11C22,5.45 17.55,1 12,1C6.45,1 2,5.45 2,11C2,16.55 6.45,21 12,21Z"/>
+                            </svg>
+                        </button>
+
+                        <button class="control-btn" id="qualityBtn">
+                            <svg viewBox="0 0 24 24" width="24" height="24">
+                                <path fill="currentColor" d="M9,3V4H4V6H5V19C5,19.5 5.4,20 6,20H18C18.6,20 19,19.5 19,19V6H20V4H15V3H9M7,6H17V18H7V6M9,8V16H11V12H13V16H15V8H13V10H11V8H9Z"/>
+                            </svg>
+                        </button>
+
+                        <button class="control-btn" id="fullscreenBtn">
+                            <svg viewBox="0 0 24 24" width="24" height="24">
+                                <path fill="currentColor" d="M5,5H10V7H7V10H5V5M14,5H19V10H17V7H14V5M17,14H19V19H14V17H17V14M10,17V19H5V14H7V17H10Z"/>
+                            </svg>
+                        </button>
+
+                        <button class="control-btn exit-btn" id="exitBtn">
+                            <svg viewBox="0 0 24 24" width="24" height="24">
+                                <path fill="currentColor" d="M19,6.41L17.59,5L12,10.59L6.41,5L5,6.41L10.59,12L5,17.59L6.41,19L12,13.41L17.59,19L19,17.59L13.41,12L19,6.41Z"/>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Loading Spinner -->
+            <div class="video-loading" id="videoLoading">
+                <div class="loading-spinner"></div>
+            </div>
+        </div>
+
+        <!-- Episode List Sidebar -->
+        <div class="episode-sidebar" id="episodeSidebar">
+            <div class="sidebar-header">
+                <h3>Stranger Things</h3>
+                <p>Saison 1</p>
+                <button class="sidebar-close" id="sidebarClose">
+                    <svg viewBox="0 0 24 24" width="24" height="24">
+                        <path fill="currentColor" d="M19,6.41L17.59,5L12,10.59L6.41,5L5,6.41L10.59,12L5,17.59L6.41,19L12,13.41L17.59,19L19,17.59L13.41,12L19,6.41Z"/>
+                    </svg>
+                </button>
+            </div>
+            
+            <div class="episode-list">
+                <div class="episode-item active">
+                    <div class="episode-thumbnail">
+                        <img src="https://wallpapercave.com/wp/wp4056410.jpg" alt="Episode 1">
+                        <div class="episode-duration">47min</div>
+                    </div>
+                    <div class="episode-info">
+                        <h4>1. Disparition de Will Byers</h4>
+                        <p>Un garçon disparaît mystérieusement. Sa mère, ses amis et le chef de la police se lancent à sa recherche...</p>
+                    </div>
+                </div>
+
+                <div class="episode-item">
+                    <div class="episode-thumbnail">
+                        <img src="https://wallpapercave.com/wp/wp4056410.jpg" alt="Episode 2">
+                        <div class="episode-duration">55min</div>
+                    </div>
+                    <div class="episode-info">
+                        <h4>2. L'étrange fillette</h4>
+                        <p>Lucas, Mike et Dustin tentent de parler à la fille qu'ils ont trouvée dans les bois...</p>
+                    </div>
+                </div>
+
+                <div class="episode-item">
+                    <div class="episode-thumbnail">
+                        <img src="https://wallpapercave.com/wp/wp4056410.jpg" alt="Episode 3">
+                        <div class="episode-duration">51min</div>
+                    </div>
+                    <div class="episode-info">
+                        <h4>3. Holly Jolly</h4>
+                        <p>Hopper découvre la vérité sur les expériences du laboratoire...</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Quality Menu -->
+    <div class="quality-menu" id="qualityMenu">
+        <div class="menu-header">Qualité de lecture</div>
+        <div class="quality-options">
+            <div class="quality-option">
+                <input type="radio" id="auto" name="quality" value="auto" checked>
+                <label for="auto">Auto</label>
+                <span class="quality-desc">Ajuste automatiquement pour une lecture optimale</span>
+            </div>
+            <div class="quality-option">
+                <input type="radio" id="hd" name="quality" value="hd">
+                <label for="hd">HD</label>
+                <span class="quality-desc">720p</span>
+            </div>
+            <div class="quality-option">
+                <input type="radio" id="fullhd" name="quality" value="fullhd">
+                <label for="fullhd">Full HD</label>
+                <span class="quality-desc">1080p</span>
+            </div>
+            <div class="quality-option">
+                <input type="radio" id="uhd" name="quality" value="uhd">
+                <label for="uhd">Ultra HD</label>
+                <span class="quality-desc">4K</span>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Netflix - Accueil</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Helvetica+Neue:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body class="dashboard-page">
+    <!-- Header -->
+    <header class="dashboard-header">
+        <div class="container">
+            <div class="header-left">
+                <img src="https://logos-world.net/wp-content/uploads/2020/04/Netflix-Logo.png" alt="Netflix" class="logo">
+                <nav class="main-nav">
+                    <a href="dashboard.html" class="nav-link active">Accueil</a>
+                    <a href="series.html" class="nav-link">Séries</a>
+                    <a href="films.html" class="nav-link">Films</a>
+                    <a href="nouveautes.html" class="nav-link">Nouveautés</a>
+                   
+                </nav>
+            </div>
+            
+            <div class="header-right">
+                <div class="search-container">
+                    <input type="text" class="search-input" placeholder="Rechercher films, séries..." id="searchInput">
+                    <button class="search-btn" id="searchBtn">
+                        <svg viewBox="0 0 24 24" width="20" height="20">
+                            <path fill="currentColor" d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/>
+                        </svg>
+                    </button>
+                    <div class="search-dropdown" id="searchDropdown">
+                        <!-- Les résultats de recherche apparaîtront ici -->
+                    </div>
+                </div>
+                
+                <div class="profile-menu">
+                    <img src="https://i.pinimg.com/564x/5b/50/e7/5b50e75d07c726d36f397f6359098f58.jpg" alt="Profil" class="profile-avatar">
+                    <div class="dropdown-menu">
+                        <a href="profile.html" class="dropdown-item">Gérer les profils</a>
+                        <a href="account.html" class="dropdown-item">Compte</a>
+                        <a href="#" class="dropdown-item">Centre d'aide</a>
+                        <hr>
+                        <a href="index.html" class="dropdown-item">Se déconnecter</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="hero-background">
+            <img src="https://wallpapercave.com/wp/wp4056410.jpg" alt="Stranger Things">
+        </div>
+        <div class="hero-content">
+            <div class="hero-info">
+                <h1 class="hero-title">Stranger Things</h1>
+                <p class="hero-description">
+                    Quand un jeune garçon disparaît, sa mère, un chef de police et ses amis doivent affronter des forces terrifiantes pour le retrouver.
+                </p>
+                <div class="hero-buttons">
+                    <button class="btn-play">
+                        ▶ Lecture
+                    </button>
+                    <button class="btn-info">
+                        ℹ Plus d'infos
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Content Sections -->
+    <main class="main-content">
+        <div class="container">
+            <!-- Search Results (Hidden by default) -->
+            <div class="search-results" id="searchResults" style="display: none;">
+                <h2>Résultats de recherche</h2>
+                <div class="content-row" id="searchResultsContainer">
+                    <!-- Search results will be populated here -->
+                </div>
+            </div>
+            
+            <!-- Trending Now -->
+            <section class="content-section">
+                <h2 class="section-title">Tendances actuelles</h2>
+                <div class="content-row" id="trendingContent">
+                    <!-- Content will be populated by JavaScript -->
+                </div>
+            </section>
+            
+            <!-- Netflix Originals -->
+            <section class="content-section">
+                <h2 class="section-title">Séries originales Netflix</h2>
+                <div class="content-row" id="originalsContent">
+                    <!-- Content will be populated by JavaScript -->
+                </div>
+            </section>
+            
+            <!-- Top Rated -->
+            <section class="content-section">
+                <h2 class="section-title">Les mieux notés</h2>
+                <div class="content-row" id="topRatedContent">
+                    <!-- Content will be populated by JavaScript -->
+                </div>
+            </section>
+            
+            <!-- Horror Movies -->
+            <section class="content-section">
+                <h2 class="section-title">Films d'horreur</h2>
+                <div class="content-row" id="horrorContent">
+                    <!-- Content will be populated by JavaScript -->
+                </div>
+            </section>
+            
+            <!-- Sci-Fi Movies -->
+            <section class="content-section">
+                <h2 class="section-title">Science-fiction</h2>
+                <div class="content-row" id="scifiContent">
+                    <!-- Content will be populated by JavaScript -->
+                </div>
+            </section>
+            
+            <!-- Romance Movies -->
+            <section class="content-section">
+                <h2 class="section-title">Films "romantiques" </h2>
+                <div class="content-row" id="romanceContent">
+                    <!-- Content will be populated by JavaScript -->
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Modal for movie/series details -->
+    <div class="modal-overlay" id="modalOverlay">
+        <div class="modal-content">
+            <button class="modal-close" id="modalClose">&times;</button>
+            <div class="modal-body" id="modalBody">
+                <!-- Modal content will be populated by JavaScript -->
+            </div>
+        </div>
+    </div>
+    
+    <!-- Scripts -->
+    <script src="api.js"></script>
+    <script src="script.js"></script>
+    <script src="pages-script.js"></script>
+    <script src="search.js"></script>
+</body>
+</html>

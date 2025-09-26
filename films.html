@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Netflix - Films</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Helvetica+Neue:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body class="dashboard-page">
+    <!-- Header -->
+    <header class="dashboard-header">
+        <div class="container">
+            <div class="header-left">
+                <img src="https://logos-world.net/wp-content/uploads/2020/04/Netflix-Logo.png" alt="Netflix" class="logo">
+                <nav class="main-nav">
+                    <a href="dashboard.html" class="nav-link">Accueil</a>
+                    <a href="series.html" class="nav-link">Séries</a>
+                    <a href="films.html" class="nav-link active">Films</a>
+                    <a href="nouveautes.html" class="nav-link">Nouveautés</a>
+                    
+                </nav>
+            </div>
+            
+            <div class="header-right">
+                <div class="search-container">
+                    <input type="text" class="search-input" placeholder="Rechercher des films..." id="searchInput">
+                    <button class="search-btn" id="searchBtn">
+                        <svg viewBox="0 0 24 24" width="20" height="20">
+                            <path fill="currentColor" d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/>
+                        </svg>
+                    </button>
+                    <div class="search-dropdown" id="searchDropdown">
+                        <!-- Les résultats de recherche apparaîtront ici -->
+                    </div>
+                </div>
+                
+                <div class="profile-menu">
+                    <img src="https://i.pinimg.com/564x/5b/50/e7/5b50e75d07c726d36f397f6359098f58.jpg" alt="Profil" class="profile-avatar">
+                    <div class="dropdown-menu">
+                        <a href="profile.html" class="dropdown-item">Gérer les profils</a>
+                        <a href="account.html" class="dropdown-item">Compte</a>
+                        <a href="#" class="dropdown-item">Centre d'aide</a>
+                        <hr>
+                        <a href="index.html" class="dropdown-item">Se déconnecter</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section for Movies -->
+    <section class="hero-section">
+        <div class="hero-background">
+            <img src="https://images7.alphacoders.com/132/1325099.jpg" alt="Films Cinema">
+        </div>
+        <div class="hero-content">
+            <div class="hero-info">
+                <h1 class="hero-title">Découvrez les meilleurs films</h1>
+                <p class="hero-description">
+                    Explorez une vaste collection de films, des blockbusters aux films indépendants, des comédies aux thrillers, pour tous les goûts et tous les âges.
+                </p>
+                <div class="hero-buttons">
+                    <button class="btn-play" onclick="window.location.href='dashboard.html'">
+                        🎬 Explorer
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Content Sections -->
+    <main class="main-content">
+        <div class="container">
+            <!-- Search Results (Hidden by default) -->
+            <div class="search-results" id="searchResults" style="display: none;">
+                <h2>Résultats de recherche</h2>
+                <div class="content-row" id="searchResultsContainer">
+                    <!-- Search results will be populated here -->
+                </div>
+            </div>
+            
+            <!-- Popular Movies -->
+            <section class="content-section">
+                <h2 class="section-title">Films populaires</h2>
+                <div class="content-row" id="popularMoviesContent">
+                    <!-- Content will be populated by JavaScript -->
+                </div>
+            </section>
+            
+            <!-- Netflix Original Movies -->
+            <section class="content-section">
+                <h2 class="section-title">Films originaux Netflix</h2>
+                <div class="content-row" id="originalsMoviesContent">
+                    <!-- Content will be populated by JavaScript -->
+                </div>
+            </section>
+            
+            <!-- Top Rated Movies -->
+            <section class="content-section">
+                <h2 class="section-title">Films les mieux notés</h2>
+                <div class="content-row" id="topRatedMoviesContent">
+                    <!-- Content will be populated by JavaScript -->
+                </div>
+            </section>
+            
+            <!-- Action Movies -->
+            <section class="content-section">
+                <h2 class="section-title">Films d'action</h2>
+                <div class="content-row" id="actionMoviesContent">
+                    <!-- Content will be populated by JavaScript -->
+                </div>
+            </section>
+            
+            <!-- Comedy Movies -->
+            <section class="content-section">
+                <h2 class="section-title">Films de comédie</h2>
+                <div class="content-row" id="comedyMoviesContent">
+                    <!-- Content will be populated by JavaScript -->
+                </div>
+            </section>
+            
+            <!-- Drama Movies -->
+            <section class="content-section">
+                <h2 class="section-title">Films dramatiques</h2>
+                <div class="content-row" id="dramaMoviesContent">
+                    <!-- Content will be populated by JavaScript -->
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Modal for movie details -->
+    <div class="modal-overlay" id="modalOverlay">
+        <div class="modal-content">
+            <button class="modal-close" id="modalClose">&times;</button>
+            <div class="modal-body" id="modalBody">
+                <!-- Modal content will be populated by JavaScript -->
+            </div>
+        </div>
+    </div>
+    
+    <!-- Scripts -->
+    <script src="api.js"></script>
+    <script src="script.js"></script>
+    <script src="pages-script.js"></script>
+    <script src="search.js"></script>
+    <script>
+        // Initialiser spécifiquement pour les films
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeMoviesPage();
+        });
+        
+        async function initializeMoviesPage() {
+            console.log('🎬 Initialisation page Films');
+            
+            try {
+                // Afficher un indicateur de chargement
+                showMoviesLoadingIndicator();
+                
+                // Charger le héro avec trailer pour les films
+                await loadMoviesHero();
+                
+                // Charger le contenu des films
+                await loadMoviesContent();
+                
+                // Initialiser les fonctionnalités interactives
+                initializeDashboardFeatures();
+                
+                console.log('✅ Page Films initialisée avec succès');
+                
+            } catch (error) {
+                console.error('❌ Erreur lors de l\'initialisation des films:', error);
+                showErrorMessage('Erreur de chargement. Veuillez rafraîchir la page.');
+            }
+        }
+        
+        async function loadMoviesHero() {
+            console.log('🎬 Chargement du héro des films...');
+            
+            try {
+                // Récupérer les films populaires pour le héro
+                const popularMovies = await contentManager.loadPopularMovies();
+                
+                if (popularMovies && popularMovies.length > 0) {
+                    // Prendre le premier élément et récupérer ses détails avec trailer
+                    const heroMovie = popularMovies[0];
+                    const detailedHero = await contentManager.getContentDetails(heroMovie.id, 'movie');
+                    updateMoviesHeroSection(detailedHero);
+                    console.log(`✅ Héro films mis à jour: ${detailedHero.title}`);
+                }
+                
+            } catch (error) {
+                console.error('❌ Erreur lors du chargement du héro des films:', error);
+                // Garder le héro par défaut en cas d'erreur
+            }
+        }
+        
+        function updateMoviesHeroSection(item) {
+            const heroTitle = document.querySelector('.hero-title');
+            const heroDescription = document.querySelector('.hero-description');
+            const heroBackground = document.querySelector('.hero-background');
+            
+            if (heroTitle) {
+                heroTitle.textContent = `🎬 ${item.title || 'Film non disponible'}`;
+            }
+            
+            if (heroDescription) {
+                heroDescription.textContent = item.description || 'Description non disponible.';
+            }
+            
+            if (heroBackground) {
+                // Si on a un trailer, on remplace l'image par une iframe YouTube
+                if (item.trailer) {
+                    heroBackground.innerHTML = `
+                        <iframe 
+                            src="${item.trailer}&controls=0&showinfo=0&rel=0&modestbranding=1&fs=0&disablekb=1" 
+                            frameborder="0" 
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                            allowfullscreen
+                            style="width: 100%; height: 100%; object-fit: cover; pointer-events: none;"
+                        ></iframe>
+                    `;
+                } else {
+                    // Sinon, on garde l'image ou une image par défaut
+                    const backdropUrl = item.backdrop || item.image || 'https://wallpapercave.com/wp/wp4056410.jpg';
+                    heroBackground.innerHTML = `<img src="${backdropUrl}" alt="${item.title || 'Films'}">`;
+                }
+            }
+        }
+        
+        async function loadMoviesContent() {
+            console.log('📡 Chargement du contenu des films...');
+            
+            try {
+                const [popularMovies, originalsMovies, topRatedMovies, actionMovies, comedyMovies, dramaMovies] = await Promise.allSettled([
+                    contentManager.loadPopularMovies(),
+                    contentManager.loadNetflixOriginalsMovies(),
+                    contentManager.loadTopRatedMovies(),
+                    contentManager.loadActionMovies(),
+                    contentManager.loadComedyMovies(),
+                    contentManager.loadDramaMovies()
+                ]);
+                
+                if (popularMovies.status === 'fulfilled') {
+                    populateContentSection('popularMoviesContent', popularMovies.value);
+                }
+                
+                if (originalsMovies.status === 'fulfilled') {
+                    populateContentSection('originalsMoviesContent', originalsMovies.value);
+                }
+                
+                if (topRatedMovies.status === 'fulfilled') {
+                    populateContentSection('topRatedMoviesContent', topRatedMovies.value);
+                }
+                
+                if (actionMovies.status === 'fulfilled') {
+                    populateContentSection('actionMoviesContent', actionMovies.value);
+                }
+                
+                if (comedyMovies.status === 'fulfilled') {
+                    populateContentSection('comedyMoviesContent', comedyMovies.value);
+                }
+                
+                if (dramaMovies.status === 'fulfilled') {
+                    populateContentSection('dramaMoviesContent', dramaMovies.value);
+                }
+                
+            } catch (error) {
+                console.error('❌ Erreur lors du chargement des films:', error);
+                throw error;
+            }
+        }
+        
+        function showMoviesLoadingIndicator() {
+            const indicators = ['popularMoviesContent', 'originalsMoviesContent', 'topRatedMoviesContent', 'actionMoviesContent', 'comedyMoviesContent', 'dramaMoviesContent'];
+            indicators.forEach(id => {
+                const container = document.getElementById(id);
+                if (container) {
+                    container.innerHTML = '<div class="loading-placeholder">🎬 Chargement des films...</div>';
+                }
+            });
+        }
+    </script>
+</body>
+</html>

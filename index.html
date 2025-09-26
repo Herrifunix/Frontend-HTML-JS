@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Netflix - Se connecter</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Helvetica+Neue:wght@300;400;500;700&display=swap" rel="stylesheet">
+</head>
+
+<body class="login-page">
+    <div class="login-background">
+        <div class="background-overlay"></div>
+        <img src="https://assets.nflxext.com/ffe/siteui/vlv3/47c2bc92-5a2a-4f33-8f91-4314e9e62ef1/web/FR-fr-20240916-TRIFECTA-perspective_72df5d07-cf3f-4530-9afd-8f1d92d7f1a8_large.jpg" alt="Netflix Background">
+        
+        <!-- Header -->
+        <header class="login-header">
+            <div class="container">
+                <img src="https://logos-world.net/wp-content/uploads/2020/04/Netflix-Logo.png" alt="Netflix" class="logo">
+            </div>
+        </header>
+
+        <!-- Main content -->
+        <main class="login-main">
+            <div class="login-container">
+                <div class="login-form-wrapper">
+                    <h1>Se connecter</h1>
+                    
+                    <form class="login-form" id="loginForm">
+                        <div class="form-group">
+                            <input type="email" id="email" class="form-input" placeholder=" " required>
+                            <label for="email" class="form-label">E-mail ou numéro de téléphone</label>
+                            <div class="error-message" id="emailError"></div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <input type="password" id="password" class="form-input" placeholder=" " required>
+                            <label for="password" class="form-label">Mot de passe</label>
+                            <div class="error-message" id="passwordError"></div>
+                        </div>
+                        
+                        <button type="submit" class="btn-primary btn-login">Se connecter</button>
+                        
+                        <div class="form-options">
+                            <label class="checkbox-container">
+                                <input type="checkbox" id="rememberMe">
+                                <span class="checkmark"></span>
+                                Se souvenir de moi
+                            </label>
+                            <a href="#" class="forgot-password">Besoin d'aide ?</a>
+                        </div>
+                    </form>
+                    
+                    <div class="guest-access">
+                        <button type="button" class="btn-guest" id="guestLoginBtn">
+                            🎬 Continuer en tant qu'invité
+                        </button>
+                        <p class="guest-note">Accès limité au catalogue sans inscription</p>
+                    </div>
+                    
+                    <div class="signup-section">
+                        <p>Première visite sur Netflix ? <a href="#" id="signupLink">Inscrivez-vous</a></p>
+                    </div>
+                    
+                    <div class="recaptcha-info">
+                        <p>Cette page est protégée par Google reCAPTCHA pour nous assurer que vous n'êtes pas un robot.</p>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Modal d'inscription -->
+    <div class="modal-overlay" id="signupModal">
+        <div class="modal-content">
+            <button class="modal-close" id="closeSignup">&times;</button>
+            <h2 class="modal-title">Créer un compte</h2>
+            
+            <form class="signup-form" id="signupForm">
+                <div class="modal-form-group">
+                    <label for="firstName">Prénom</label>
+                    <input type="text" id="firstName" placeholder="Entrez votre prénom" required>
+                </div>
+                
+                <div class="modal-form-group">
+                    <label for="lastName">Nom</label>
+                    <input type="text" id="lastName" placeholder="Entrez votre nom" required>
+                </div>
+                
+                <div class="modal-form-group">
+                    <label for="signupEmail">Adresse e-mail</label>
+                    <input type="email" id="signupEmail" placeholder="Entrez votre e-mail" required>
+                </div>
+                
+                <div class="modal-form-group">
+                    <label for="signupPassword">Mot de passe</label>
+                    <input type="password" id="signupPassword" placeholder="Créez un mot de passe" required>
+                </div>
+                
+                <div class="modal-form-group">
+                    <label for="confirmPassword">Confirmer le mot de passe</label>
+                    <input type="password" id="confirmPassword" placeholder="Confirmez votre mot de passe" required>
+                </div>
+                
+                <button type="submit" class="modal-submit-btn">Créer le compte</button>
+                
+                <div class="modal-footer">
+                    En créant un compte, vous acceptez nos 
+                    <a href="#">Conditions d'utilisation</a> et notre 
+                    <a href="#">Politique de confidentialité</a>.
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // Gestion de la connexion fictive
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            
+            // Validation simple
+            if (email && password) {
+                // Simulation d'une connexion réussie
+                console.log('🔐 Connexion fictive réussie');
+                
+                // Stocker les informations de connexion (fictif)
+                localStorage.setItem('netflixUser', JSON.stringify({
+                    email: email,
+                    name: email.split('@')[0],
+                    loginTime: new Date().toISOString(),
+                    isLoggedIn: true
+                }));
+                
+                // Animation de chargement
+                const submitBtn = document.querySelector('.btn-login');
+                const originalText = submitBtn.textContent;
+                submitBtn.textContent = 'Connexion...';
+                submitBtn.disabled = true;
+                
+                // Redirection vers le dashboard après 1 seconde
+                setTimeout(() => {
+                    window.location.href = 'dashboard.html';
+                }, 1000);
+            } else {
+                alert('Veuillez remplir tous les champs');
+            }
+        });
+
+        // Gestion de l'accès invité
+        document.getElementById('guestLoginBtn').addEventListener('click', function() {
+            localStorage.setItem('netflixUser', JSON.stringify({
+                email: 'guest@netflix.com',
+                name: 'Invité',
+                loginTime: new Date().toISOString(),
+                isLoggedIn: true,
+                isGuest: true
+            }));
+            
+            window.location.href = 'dashboard.html';
+        });
+        
+        // Gestion de l'inscription fictive
+        document.getElementById('signupLink').addEventListener('click', function(e) {
+            e.preventDefault();
+            document.getElementById('signupModal').classList.add('show');
+        });
+        
+        document.getElementById('closeSignup').addEventListener('click', function() {
+            document.getElementById('signupModal').classList.remove('show');
+        });
+        
+        document.getElementById('signupForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const firstName = document.getElementById('firstName').value;
+            const lastName = document.getElementById('lastName').value;
+            const email = document.getElementById('signupEmail').value;
+            const password = document.getElementById('signupPassword').value;
+            const confirmPassword = document.getElementById('confirmPassword').value;
+            
+            // Validation
+            if (!firstName || !lastName || !email || !password || !confirmPassword) {
+                alert('Veuillez remplir tous les champs');
+                return;
+            }
+            
+            if (password !== confirmPassword) {
+                alert('Les mots de passe ne correspondent pas');
+                return;
+            }
+            
+            if (password.length < 6) {
+                alert('Le mot de passe doit contenir au moins 6 caractères');
+                return;
+            }
+            
+            // Simulation d'inscription réussie
+            console.log('📝 Inscription fictive réussie');
+            
+            // Stocker les informations utilisateur
+            localStorage.setItem('netflixUser', JSON.stringify({
+                firstName: firstName,
+                lastName: lastName,
+                email: email,
+                name: firstName + ' ' + lastName,
+                signupTime: new Date().toISOString(),
+                isLoggedIn: true
+            }));
+            
+            // Animation de succès
+            const submitBtn = document.querySelector('.modal-submit-btn');
+            submitBtn.textContent = 'Compte créé !';
+            submitBtn.style.background = '#46d369';
+            
+            setTimeout(() => {
+                document.getElementById('signupModal').classList.remove('show');
+                window.location.href = 'dashboard.html';
+            }, 1500);
+        });
+        
+        // Fermer le modal en cliquant à l'extérieur
+        document.getElementById('signupModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                this.classList.remove('show');
+            }
+        });
+        
+        // Vérifier si l'utilisateur est déjà connecté
+        document.addEventListener('DOMContentLoaded', function() {
+            const user = localStorage.getItem('netflixUser');
+            if (user) {
+                const userData = JSON.parse(user);
+                if (userData.isLoggedIn) {
+                    console.log('👤 Utilisateur déjà connecté, redirection...');
+                    window.location.href = 'dashboard.html';
+                }
+            }
+        });
+        
+        // Animation des inputs
+        document.querySelectorAll('.form-input').forEach(input => {
+            input.addEventListener('focus', function() {
+                this.parentElement.classList.add('focused');
+            });
+            
+            input.addEventListener('blur', function() {
+                if (!this.value) {
+                    this.parentElement.classList.remove('focused');
+                }
+            });
+            
+            // Vérifier si l'input a déjà une valeur au chargement
+            if (input.value) {
+                input.parentElement.classList.add('focused');
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Netflix - Mon compte</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Helvetica+Neue:wght@300;400;500;700&display=swap" rel="stylesheet">
+</head>
+<body class="account-page">
+    <!-- Header -->
+    <header class="dashboard-header">
+        <div class="container">
+            <div class="header-left">
+                <img src="https://logos-world.net/wp-content/uploads/2020/04/Netflix-Logo.png" alt="Netflix" class="logo">
+                <nav class="main-nav">
+                    <a href="dashboard.html" class="nav-link">Accueil</a>
+                    <a href="#" class="nav-link">Séries</a>
+                    <a href="#" class="nav-link">Films</a>
+                    <a href="#" class="nav-link">Nouveautés</a>
+                    
+                </nav>
+            </div>
+            
+            <div class="header-right">
+                <div class="profile-menu">
+                    <img src="https://i.pinimg.com/564x/5b/50/e7/5b50e75d07c726d36f397f6359098f58.jpg" alt="Profil" class="profile-avatar">
+                    <div class="dropdown-menu">
+                        <a href="profile.html" class="dropdown-item">Gérer les profils</a>
+                        <a href="account.html" class="dropdown-item">Compte</a>
+                        <a href="#" class="dropdown-item">Centre d'aide</a>
+                        <hr>
+                        <a href="index.html" class="dropdown-item">Se déconnecter</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main content -->
+    <main class="account-main">
+        <div class="container">
+            <div class="page-header">
+                <h1>Compte</h1>
+                <p class="membership-date">Membre depuis octobre 2023</p>
+            </div>
+
+            <!-- Membership & Billing -->
+            <section class="account-section">
+                <h2>Abonnement et facturation</h2>
+                <div class="account-card">
+                    <div class="account-info">
+                        <div class="info-group">
+                            <strong>john.doe@email.com</strong>
+                            <div class="account-links">
+                                <a href="#" class="link">Changer d'adresse e-mail</a>
+                                <a href="#" class="link">Mot de passe</a>
+                                <a href="#" class="link">Téléphone</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="billing-info">
+                        <div class="plan-details">
+                            <div class="plan-name">Standard <span class="plan-badge">HD</span></div>
+                            <div class="plan-price">13,49 €/mois</div>
+                        </div>
+                        <div class="account-links">
+                            <a href="#" class="link">Changer de forfait</a>
+                            <a href="#" class="link">Infos de facturation complémentaires</a>
+                        </div>
+                    </div>
+
+                    <div class="payment-info">
+                        <div class="payment-method">
+                            <svg viewBox="0 0 24 24" width="24" height="24">
+                                <path fill="currentColor" d="M20,8H4V6H20M20,18H4V12H20M20,4H4C2.89,4 2,4.89 2,6V18A2,2 0 0,0 4,20H20A2,2 0 0,0 22,18V6C22,4.89 21.11,4 20,4Z"/>
+                            </svg>
+                            <span>•••• •••• •••• 1234</span>
+                        </div>
+                        <div class="next-billing">Prochaine facturation le 24 octobre 2025</div>
+                        <div class="account-links">
+                            <a href="#" class="link">Gérer les infos de paiement</a>
+                            <a href="#" class="link">Ajouter un moyen de paiement de secours</a>
+                            <a href="#" class="link">Détails de facturation</a>
+                            <a href="#" class="link">Changer le jour de facturation</a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Plan Details -->
+            <section class="account-section">
+                <h2>Détails du forfait</h2>
+                <div class="plan-comparison">
+                    <div class="plan-card">
+                        <h3>Essentiel</h3>
+                        <div class="plan-price">7,99 €</div>
+                        <ul class="plan-features">
+                            <li>720p</li>
+                            <li>1 appareil à la fois</li>
+                            <li>Téléchargement sur 1 appareil</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="plan-card current">
+                        <h3>Standard</h3>
+                        <div class="plan-price">13,49 €</div>
+                        <div class="current-badge">Forfait actuel</div>
+                        <ul class="plan-features">
+                            <li>1080p</li>
+                            <li>2 appareils à la fois</li>
+                            <li>Téléchargement sur 2 appareils</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="plan-card">
+                        <h3>Premium</h3>
+                        <div class="plan-price">17,99 €</div>
+                        <ul class="plan-features">
+                            <li>4K + HDR</li>
+                            <li>4 appareils à la fois</li>
+                            <li>Téléchargement sur 6 appareils</li>
+                        </ul>
+                        <button class="btn-upgrade">Passer au Premium</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Profiles -->
+            <section class="account-section">
+                <h2>Profils et contrôle parental</h2>
+                <div class="profiles-list">
+                    <div class="profile-row">
+                        <div class="profile-info">
+                            <img src="https://i.pinimg.com/564x/5b/50/e7/5b50e75d07c726d36f397f6359098f58.jpg" alt="Profil principal" class="profile-pic">
+                            <div class="profile-details">
+                                <h4>Principal</h4>
+                                <div class="profile-settings">
+                                    <span>Toutes les catégories de maturité</span>
+                                    <span>Français, Anglais</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="profile-actions">
+                            <a href="#" class="link">Gérer le profil</a>
+                        </div>
+                    </div>
+
+                    <div class="profile-row">
+                        <div class="profile-info">
+                            <img src="https://i.pinimg.com/564x/1c/c5/35/1cc535901e32f18db87fa195a942c6d0.jpg" alt="Profil enfants" class="profile-pic">
+                            <div class="profile-details">
+                                <h4>Enfants</h4>
+                                <div class="profile-settings">
+                                    <span>Enfants (jusqu'à 12 ans)</span>
+                                    <span>Français</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="profile-actions">
+                            <a href="#" class="link">Gérer le profil</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="account-links">
+                    <a href="profile.html" class="link">Gérer les profils</a>
+                    <a href="#" class="link">Ajouter un profil</a>
+                    <a href="#" class="link">Code PIN du compte</a>
+                </div>
+            </section>
+
+            <!-- Settings -->
+            <section class="account-section">
+                <h2>Paramètres</h2>
+                <div class="settings-list">
+                    <div class="setting-row">
+                        <div class="setting-info">
+                            <h4>Lecture automatique</h4>
+                            <p>Lecture automatique du prochain épisode de tous les appareils</p>
+                        </div>
+                        <div class="setting-control">
+                            <label class="toggle-switch">
+                                <input type="checkbox" checked>
+                                <span class="toggle-slider"></span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="setting-row">
+                        <div class="setting-info">
+                            <h4>Lecture automatique des aperçus</h4>
+                            <p>Lecture automatique des aperçus pendant la navigation sur tous les appareils</p>
+                        </div>
+                        <div class="setting-control">
+                            <label class="toggle-switch">
+                                <input type="checkbox" checked>
+                                <span class="toggle-slider"></span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="setting-row">
+                        <div class="setting-info">
+                            <h4>Utilisation des données mobiles</h4>
+                            <p>Contrôler la quantité de données utilisées lors du streaming sur un réseau mobile</p>
+                        </div>
+                        <div class="setting-control">
+                            <select class="setting-select">
+                                <option value="low">Économique</option>
+                                <option value="medium" selected>Automatique</option>
+                                <option value="high">Maximum</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="account-links">
+                    <a href="#" class="link">Gérer l'accès aux appareils de téléchargement</a>
+                    <a href="#" class="link">Se déconnecter de tous les appareils</a>
+                    <a href="#" class="link">Télécharger vos informations personnelles</a>
+                </div>
+            </section>
+
+            <!-- My Activity -->
+            <section class="account-section">
+                <h2>Mon activité</h2>
+                <div class="activity-links">
+                    <a href="#" class="link">Historique de visionnage</a>
+                    <a href="#" class="link">Évaluations</a>
+                   
+                </div>
+            </section>
+
+            <!-- Cancel Membership -->
+            <section class="account-section danger-section">
+                <div class="cancel-membership">
+                    <h3>Résilier l'abonnement</h3>
+                    <p>Vous n'utilisez plus Netflix ? Pas de problème. Résiliez quand vous voulez.</p>
+                    <button class="btn-danger">Résilier l'abonnement</button>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer class="account-footer">
+        <div class="container">
+            <div class="footer-links">
+                <a href="#">Questions fréquentes</a>
+                <a href="#">Centre d'aide</a>
+                <a href="#">Conditions d'utilisation</a>
+                <a href="#">Confidentialité</a>
+                <a href="#">Préférences de cookies</a>
+                <a href="#">Mentions légales</a>
+            </div>
+            <div class="footer-info">
+                <p>&copy; 2025 Netflix, Inc.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
